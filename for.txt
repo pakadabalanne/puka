@@ -1,0 +1,177 @@
+-------------------------Autopsy-----------------------------
+
+1. Image hash.
+Hint: Data Source -> Select Image -> File Metadata
+
+2. Operating system
+Hint: Data Artifacts -> OS Information -> Select Software -> Program Name
+
+3. Installation date
+Hint: Data Artifacts -> OS Information -> Select Software -> Date / Time
+
+4. Registered owner
+Hint: Data Artifacts -> OS Information -> Select Software -> Owner
+
+5. Computer Account Name.
+Hint: OS Accounts -> under Login Name
+
+6. Last recorded computer shutdown date/time.
+Hint: Data Source -> select Image -> vol 2 -> windows -> system32 -> config -> check SysEvent.evt file
+
+7. Accounts are recorded (total number).
+Hint: OS Accounts
+
+8. Domain name used for the last web search
+Hint: Data Artifacts -> Web Search -> select last search
+
+9. Program used for the last web search
+Hint: Data Artifacts -> Web Search -> select last search
+
+10. Programs that may be used to communicate with third person.
+Hint: Data Artifacts -> Installed Programs
+
+11. Executable files are in the recycle bin.
+Hint: Program Files -> Recycler
+
+12. Export Dc3.docx file from Recycler to Host computer and analyse the content.
+Hint: Data Source -> Select Image -> Vol 2 -> Recycler
+
+13. Time Zone
+Hint: Windows -> System32 -> Config -> System -> ControlSet001 -> Control -> TimeZoneInformation -> StandardName
+
+14. Information about Operating System
+Hint: Windows -> System32 -> Config -> Software -> Microsoft -> Windows NT -> CurrentVersion
+
+15. Find Computer Name
+Hint: Windows -> System32 -> Config -> System -> ControlSet001 -> Control -> ComputerName -> ComputerName
+
+16. Last recorded computer shutdown time
+Hint: Windows -> System32 -> Config -> Software -> Microsoft -> Windows NT -> CurrentVersion -> Prefetcher -> ExitTime
+
+17. Last user logon to the computer
+Hint: Windows -> System32 -> Config -> Software -> Microsoft -> Windows NT -> CurrentVersion -> Winlogon -> Default user Name
+
+18. Network cards used by this computer
+Hint: Windows -> System32 -> Config -> Software -> Microsoft -> Windows NT -> CurrentVersion -> NetworkCards
+
+19. IP Address and details of the computer
+Hint: Windows -> System32 -> Config -> System -> ControlSet001 -> Services -> Tcpip -> Parameters -> Interfaces
+
+20. List all the users of the computer
+Hint: Windows -> System32 -> Config -> SAM -> Domains -> Account -> Users -> Names
+
+21. Email clients used by the user
+Hint: Windows -> System32 -> Config -> Software -> Clients -> Mail
+
+22. Mounted devices
+Hint: Windows -> System32 -> Config -> System -> MountedDevices
+
+23. List down recently accessed documents and their date and time
+Hint: Data Artifacts -> Recent Documents
+
+
+
+
+-----------------------Volatility tool-------------------------------------
+
+volatility.exe -f dumpname.raw imageinfo
+
+1. Run a command to list all the process list
+volatility.exe -f dumpname.raw --profile=<profilename> pslist
+
+2.Run a command to list the history of Internet Explorer
+volatility.exe -f dumpname.raw –-profile=<profilename> iehistory
+
+3.view the process listing in tree form - pstree
+
+4.inactive or hidden processes - psscan
+
+5.DLLs - dlllist
+
+6.commands on cmd - cmdscan
+
+7.active and terminated connections - connscan
+
+8.TCP/UDP connections - sockets
+
+9.physical addresses of registry hives - hivescan
+
+10.virtual addresses of registry hives - hivelist
+
+11.get the passwords - mimikatz
+
+12.hidden, malicious code analysis - malfind
+
+13.dump all memory resident pages - memdump
+
+
+
+
+--------------------------Wiershark-----------------------------------------
+
+
+2. Filter according to protocol
+Use the display filter bar at the top to filter packets by protocol.
+
+3. Filter according to IP address
+ip.addr == x.x.x.x
+
+4. Filter according to IP address and Protocol
+ip.addr == x.x.x.x && http
+
+5. Analyze DNS packets
+dns
+
+6. Analyze HTTP packets
+http
+
+7. Executive Summary: State in simple, direct terms what happened (when, who and what).
+statistics-capture file properties 
+
+8.windows hostname-
+kerberose- as request - request body 
+smtp-select victim - rightclick- follow 
+nbns-net bias
+    
+C name in kerberos or Name in nbns -right click - apply as column 	
+
+
+9. Victim Details: Victim’s IP address, MAC address, Windows hostname and Windows user account name.
+statistics-conversation-ipv4-decending order 
+
+10. Indicators of Compromise (IoCs): IP addresses, ports, domains and URLs associated with the infection. SHA256 hashes if any files from the infection can be extracted from the pcap.
+
+11. Login Data Malware: file - export objects - IMF - save - open with browser 
+
+12.Malecious attack date - 
+statistics - conversation - ip addr 
+search ip addr - click frame - arrival time 
+		ethernet II - source (00:00:00:00:00:00)  
+
+
+
+-----------------steganographic tools---------------------------------------
+photo and txt file should be in same folder 
+open folder with cmd
+copy /b txt_file_path_and_name+_jpg_path_and_name  
+copy /b D:\steng\cd.txt+D:\steng\aa.png merg.jpg
+D:\steng\cd.txt
+D:\steng\aa.png
+        1 file(s) copied.
+
+E:\stegno>copy /b E:\stegno\merged.rar+E:\stegno\image.png E:\Stegno\mergednew.rar
+E:\stegno\merged.rar
+E:\stegno\image.png
+        1 file(s) copied.
+
+
+
+-----------------FTK Imager----------------------------------------------------
+
+First using DumpIt create a raw file
+open FTK Imager-capture memory-"folder location"-capture memory-close
+file- add evidence item - contents of a folder - next -browse - finish-select and view 
+
+-----------------exif tool----------------------------------------------------------
+go to exiftool folder
+exiftool.exe "image file name"
